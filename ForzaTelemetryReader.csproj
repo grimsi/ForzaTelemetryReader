@@ -2,6 +2,17 @@
 
     <PropertyGroup>
         <TargetFramework>net5.0</TargetFramework>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <PackageVersion>0.1.0</PackageVersion>
+        <Title>Forza Telemetry Reader</Title>
+        <Authors>grimsi</Authors>
+        <Description>Library to read and parse live telemetry data from Forza video games</Description>
+        <RepositoryType>git</RepositoryType>
+        <Copyright>grimsi</Copyright>
+        <PackageProjectUrl>https://github.com/grimsi/ForzaTelemetryReader</PackageProjectUrl>
+        <PackageLicenseUrl>https://github.com/grimsi/ForzaTelemetryReader/blob/master/LICENSE.md</PackageLicenseUrl>
+        <RepositoryUrl>https://github.com/grimsi/ForzaTelemetryReader</RepositoryUrl>
+        <PackageTags>Forza, Telemetry, Simracing, Racing, Simulation</PackageTags>
     </PropertyGroup>
 
 </Project>
