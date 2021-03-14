@@ -4,11 +4,11 @@ using ForzaTelemetryReader.Enums;
 
 namespace ForzaTelemetryReader.Structs
 {
-    public class ForzaTelemetryPacket
+    public class TelemetryData
     {
-        public ForzaTelemetryPacket(byte[] rawTelemetryPacket)
+        public TelemetryData(byte[] rawTelemetryPacket)
         {
-            PacketType = GetPacketTypeFromRawPacket(rawTelemetryPacket);
+            GameTitle = GetGameTitleFromTelemetryPacket(rawTelemetryPacket);
 
             NormalizeTelemetryData(ref rawTelemetryPacket);
 
@@ -124,13 +124,13 @@ namespace ForzaTelemetryReader.Structs
             NormalizedAIBrakeDifference = reader.ReadSByte();
         }
 
-        public ForzaTelemetryPacket()
+        public TelemetryData()
         {
             
         }
 
         #region Custom helper values
-        public TelemetryPacketType PacketType { get; }
+        public GameTitle GameTitle { get; }
 
         #endregion
         
@@ -258,7 +258,7 @@ namespace ForzaTelemetryReader.Structs
         
         private void NormalizeTelemetryData(ref Byte[] rawTelemetryData)
         {
-            if (PacketType == TelemetryPacketType.ForzaHorizon4)
+            if (GameTitle == GameTitle.ForzaHorizon4)
             {
                 byte[] newData = new byte[311];
                 Array.Copy(rawTelemetryData, 0, newData, 0, 232);
@@ -267,18 +267,18 @@ namespace ForzaTelemetryReader.Structs
             }
         }
 
-        private TelemetryPacketType GetPacketTypeFromRawPacket(Byte[] rawTelemetryPacket)
+        private GameTitle GetGameTitleFromTelemetryPacket(Byte[] rawTelemetryPacket)
         {
             switch (rawTelemetryPacket.Length)
             { 
                 case 232:
-                    return TelemetryPacketType.ForzaMotorsport7SledMode;
+                    return GameTitle.ForzaMotorsport7SledMode;
                 case 311:
-                    return TelemetryPacketType.ForzaMotorsport7DashMode;
+                    return GameTitle.ForzaMotorsport7DashMode;
                 case 324:
-                    return TelemetryPacketType.ForzaHorizon4;
+                    return GameTitle.ForzaHorizon4;
                 default:
-                    return TelemetryPacketType.Unknown;
+                    return GameTitle.Unknown;
             }
         }
         

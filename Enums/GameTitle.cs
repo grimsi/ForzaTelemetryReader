@@ -1,6 +1,6 @@
 ﻿namespace ForzaTelemetryReader.Enums
 {
-    public enum TelemetryPacketType
+    public enum GameTitle
     {
         Unknown,
         ForzaMotorsport7SledMode,

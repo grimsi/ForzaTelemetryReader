@@ -4,11 +4,11 @@ using System.Net.Sockets;
 using System.Threading;
 using ForzaTelemetryReader.Structs;
 
-namespace ForzaTelemetryReader
+namespace MicrosoftGames.Forza
 {
-    public class ForzaTelemetryReader
+    public class TelemetryReader
     {
-        public ForzaTelemetryReader(int port)
+        public TelemetryReader(int port)
         {
             _port = port;
         }
@@ -17,7 +17,7 @@ namespace ForzaTelemetryReader
         private Thread _listenerThread;
         private bool _stopThread;
 
-        public ForzaTelemetryPacket Packet { get; private set; } = new();
+        public TelemetryData TelemetryData { get; private set; } = new();
 
         public void StartListener()
         {
@@ -27,11 +27,11 @@ namespace ForzaTelemetryReader
                 return;
             }
             
-            var progress = new Progress<ForzaTelemetryPacket>();
+            var progress = new Progress<TelemetryData>();
 
             progress.ProgressChanged += (_, telemetryPacket) =>
             {
-                Packet = telemetryPacket;
+                TelemetryData = telemetryPacket;
             };
 
             _listenerThread = new Thread(() => ListenForData(progress)) { IsBackground = true };
@@ -44,7 +44,7 @@ namespace ForzaTelemetryReader
             _stopThread = true;
         }
         
-        private void ListenForData(IProgress<ForzaTelemetryPacket> progress)
+        private void ListenForData(IProgress<TelemetryData> progress)
         {
             var udpClient = new UdpClient(_port);
             var remoteIpEndPoint = new IPEndPoint(IPAddress.Any, _port);
@@ -54,7 +54,7 @@ namespace ForzaTelemetryReader
                 try
                 {
                     var rawTelemetryData = udpClient.Receive(ref remoteIpEndPoint);
-                    progress.Report(new ForzaTelemetryPacket(rawTelemetryData));
+                    progress.Report(new TelemetryData(rawTelemetryData));
                 }
                 catch (Exception e)
                 {
