@@ -15,3 +15,4 @@ jobs:
         with:
           PROJECT_FILE_PATH: ForzaTelemetryReader.csproj
           VERSION_REGEX: ^\s*<PackageVersion>(.*)<\/PackageVersion>\s*$
+          NUGET_KEY: ${{secrets.NUGET_API_KEY}}
