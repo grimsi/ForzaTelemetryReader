@@ -8,6 +8,7 @@ Currently Forza Motorsport 7 (in "Sled" and "Dash" mode) and Forza Horizon 4 sup
 
 Both Forza Motorsport 7 and Forza Horizon 4 have a feature called "Data out" that can be enabled via the in-game settings.
 Enabling this feature will make the game send UDP packets with live telemetry data to a given IP and Port.
+The game will send a telemetry packet every frame. So if you have the game running at 60fps, the TelemetryReader will receive 60 packets per second.
 
 _Hint: According to the official documentation it is not possible to stream data to the machine the game is running on.
 This not correct, although you have to manually execute a command in order to enable localhost streaming. For more details, see ["Installation"](#installation)._
