@@ -88,7 +88,10 @@ namespace ForzaTelemetryReader.Structs
             CarPerformanceIndex = reader.ReadInt32();
             DrivetrainType = reader.ReadInt32();
             NumCylinders = reader.ReadInt32();
-                
+
+            // Only Forza Motorsport 7 in Dash Mode and Forza Horizon 4 contain the following information
+            if (GameTitle != GameTitle.ForzaHorizon4 && GameTitle != GameTitle.ForzaMotorsport7DashMode) return;
+            
             PositionX = reader.ReadSingle();
             PositionY = reader.ReadSingle();
             PositionZ = reader.ReadSingle();
