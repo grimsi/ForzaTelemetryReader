@@ -1,4 +1,4 @@
-![Nuget](https://img.shields.io/nuget/v/ForzaTelemetryReader) ![Nuget](https://img.shields.io/nuget/dt/ForzaTelemetryReader)
+[![Nuget](https://img.shields.io/nuget/v/ForzaTelemetryReader)](https://www.nuget.org/packages/ForzaTelemetryReader/) [![Nuget](https://img.shields.io/nuget/dt/ForzaTelemetryReader)](https://www.nuget.org/packages/ForzaTelemetryReader/)
 
 # ForzaTelemetryReader
 Library for reading and parsing live telemetry data from Forza video games.
